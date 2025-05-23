@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0xr4hxr0fr0r"]
+[gd_scene load_steps=6 format=3 uid="uid://b0xr4hxr0fr0r"]
 
 [ext_resource type="ArrayMesh" uid="uid://b4htxst37egel" path="res://assets/BONES_OUT.OBJ" id="1_n2ck8"]
+[ext_resource type="Script" path="res://scripts/Right Femur.gd" id="2_ccgr0"]
+[ext_resource type="Script" path="res://scripts/CollisionShape3D2.gd" id="3_e6bxh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ma1fy"]
+radius = 3.0
+height = 48.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bdq7x"]
+radius = 2.68674
+height = 54.0
 
 [node name="main" type="Node3D"]
 
@@ -16,3 +26,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52047, 83.5179, 131.31)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CharacterBody3D/Camera3D"]
 light_color = Color(0.981186, 0.894829, 0.88197, 1)
+
+[node name="Right Femur" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(0.998985, -0.0450491, 0, 0.0450491, 0.998985, 0, 0, 0, 1, -10, 69, -3)
+shape = SubResource("CapsuleShape3D_ma1fy")
+script = ExtResource("2_ccgr0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 9, 70, -9)
+shape = SubResource("CapsuleShape3D_bdq7x")
+script = ExtResource("3_e6bxh")
+
+[connection signal="input_event" from="CharacterBody3D" to="CharacterBody3D/Right Femur" method="_on_character_body_3d_input_event"]
+[connection signal="input_event" from="CharacterBody3D" to="CharacterBody3D/CollisionShape3D2" method="_on_character_body_3d_input_event"]
