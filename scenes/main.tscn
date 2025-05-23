@@ -1,16 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0xr4hxr0fr0r"]
+[gd_scene load_steps=8 format=3 uid="uid://b0xr4hxr0fr0r"]
 
 [ext_resource type="ArrayMesh" uid="uid://b4htxst37egel" path="res://assets/BONES_OUT.OBJ" id="1_n2ck8"]
 [ext_resource type="Script" path="res://scripts/Right Femur.gd" id="2_ccgr0"]
 [ext_resource type="Script" path="res://scripts/CollisionShape3D2.gd" id="3_e6bxh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ma1fy"]
-radius = 3.0
-height = 48.0
+radius = 2.6965
+height = 38.0793
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bdq7x"]
 radius = 2.68674
-height = 54.0
+height = 37.0264
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pv4l2"]
+radius = 1.69274
+height = 41.9008
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcbjj"]
+radius = 2.0
+height = 45.8533
 
 [node name="main" type="Node3D"]
 
@@ -28,14 +36,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52047, 83.5179, 131.31)
 light_color = Color(0.981186, 0.894829, 0.88197, 1)
 
 [node name="Right Femur" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(0.998985, -0.0450491, 0, 0.0450491, 0.998985, 0, 0, 0, 1, -10, 69, -3)
+transform = Transform3D(0.998985, -0.0450491, 0, 0.0450491, 0.998985, 0, 0, 0, 1, -9.48315, 73.8212, -5.88307)
 shape = SubResource("CapsuleShape3D_ma1fy")
 script = ExtResource("2_ccgr0")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 9, 70, -9)
+transform = Transform3D(1, 0, 0, 0, 0.999952, -0.00977367, 0, 0.00977367, 0.999952, 9.93504, 72.3408, -5.05767)
 shape = SubResource("CapsuleShape3D_bdq7x")
 script = ExtResource("3_e6bxh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(0.999101, 0.0423988, 0, -0.0423988, 0.999101, 0, 0, 0, 1, -8.59095, 24.8872, -5.59677)
+shape = SubResource("CapsuleShape3D_pv4l2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79517, 21.6264, -11.4931)
+shape = SubResource("CapsuleShape3D_tcbjj")
 
 [connection signal="input_event" from="CharacterBody3D" to="CharacterBody3D/Right Femur" method="_on_character_body_3d_input_event"]
 [connection signal="input_event" from="CharacterBody3D" to="CharacterBody3D/CollisionShape3D2" method="_on_character_body_3d_input_event"]
